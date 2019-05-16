@@ -1,4 +1,4 @@
-all: columns equality from_slices filter_rows csvreader table
+all: columns equality filter_rows csvreader table
 
 .PHONY: columns equality from_slices filter_rows csvreader
 
@@ -9,9 +9,6 @@ columns:
 equality:
 	go run main.go -template=equality.tmpl
 	go run main.go -template=equality_test.tmpl
-
-from_slices:
-	go run main.go -template=from_slices.tmpl
 
 filter_rows:
 	go run main.go -template=filter_rows.tmpl
