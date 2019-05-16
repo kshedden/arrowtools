@@ -8,6 +8,8 @@ import (
 	"github.com/apache/arrow/go/arrow/memory"
 )
 
+// ColumnFromUint8Slices returns a pointer to an array.Column value that
+// holds the given uint8 data.
 func ColumnFromUint8Slices(x [][]uint8, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -24,6 +26,8 @@ func ColumnFromUint8Slices(x [][]uint8, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromUint16Slices returns a pointer to an array.Column value that
+// holds the given uint16 data.
 func ColumnFromUint16Slices(x [][]uint16, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -40,6 +44,8 @@ func ColumnFromUint16Slices(x [][]uint16, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromUint32Slices returns a pointer to an array.Column value that
+// holds the given uint32 data.
 func ColumnFromUint32Slices(x [][]uint32, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -56,6 +62,8 @@ func ColumnFromUint32Slices(x [][]uint32, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromUint64Slices returns a pointer to an array.Column value that
+// holds the given uint64 data.
 func ColumnFromUint64Slices(x [][]uint64, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -72,6 +80,8 @@ func ColumnFromUint64Slices(x [][]uint64, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromInt8Slices returns a pointer to an array.Column value that
+// holds the given int8 data.
 func ColumnFromInt8Slices(x [][]int8, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -88,6 +98,8 @@ func ColumnFromInt8Slices(x [][]int8, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromInt16Slices returns a pointer to an array.Column value that
+// holds the given int16 data.
 func ColumnFromInt16Slices(x [][]int16, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -104,6 +116,8 @@ func ColumnFromInt16Slices(x [][]int16, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromInt32Slices returns a pointer to an array.Column value that
+// holds the given int32 data.
 func ColumnFromInt32Slices(x [][]int32, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -120,6 +134,8 @@ func ColumnFromInt32Slices(x [][]int32, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromInt64Slices returns a pointer to an array.Column value that
+// holds the given int64 data.
 func ColumnFromInt64Slices(x [][]int64, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -136,6 +152,8 @@ func ColumnFromInt64Slices(x [][]int64, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromFloat32Slices returns a pointer to an array.Column value that
+// holds the given float32 data.
 func ColumnFromFloat32Slices(x [][]float32, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -152,6 +170,8 @@ func ColumnFromFloat32Slices(x [][]float32, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// ColumnFromFloat64Slices returns a pointer to an array.Column value that
+// holds the given float64 data.
 func ColumnFromFloat64Slices(x [][]float64, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
@@ -168,6 +188,8 @@ func ColumnFromFloat64Slices(x [][]float64, name string) *array.Column {
 	return array.NewColumn(fld, chunks)
 }
 
+// SlicesFromUint8Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromUint8Column(col *array.Column) [][]uint8 {
 
 	var x [][]uint8
@@ -179,6 +201,8 @@ func SlicesFromUint8Column(col *array.Column) [][]uint8 {
 	return x
 }
 
+// SlicesFromUint16Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromUint16Column(col *array.Column) [][]uint16 {
 
 	var x [][]uint16
@@ -190,6 +214,8 @@ func SlicesFromUint16Column(col *array.Column) [][]uint16 {
 	return x
 }
 
+// SlicesFromUint32Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromUint32Column(col *array.Column) [][]uint32 {
 
 	var x [][]uint32
@@ -201,6 +227,8 @@ func SlicesFromUint32Column(col *array.Column) [][]uint32 {
 	return x
 }
 
+// SlicesFromUint64Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromUint64Column(col *array.Column) [][]uint64 {
 
 	var x [][]uint64
@@ -212,6 +240,8 @@ func SlicesFromUint64Column(col *array.Column) [][]uint64 {
 	return x
 }
 
+// SlicesFromInt8Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromInt8Column(col *array.Column) [][]int8 {
 
 	var x [][]int8
@@ -223,6 +253,8 @@ func SlicesFromInt8Column(col *array.Column) [][]int8 {
 	return x
 }
 
+// SlicesFromInt16Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromInt16Column(col *array.Column) [][]int16 {
 
 	var x [][]int16
@@ -234,6 +266,8 @@ func SlicesFromInt16Column(col *array.Column) [][]int16 {
 	return x
 }
 
+// SlicesFromInt32Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromInt32Column(col *array.Column) [][]int32 {
 
 	var x [][]int32
@@ -245,6 +279,8 @@ func SlicesFromInt32Column(col *array.Column) [][]int32 {
 	return x
 }
 
+// SlicesFromInt64Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromInt64Column(col *array.Column) [][]int64 {
 
 	var x [][]int64
@@ -256,6 +292,8 @@ func SlicesFromInt64Column(col *array.Column) [][]int64 {
 	return x
 }
 
+// SlicesFromFloat32Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromFloat32Column(col *array.Column) [][]float32 {
 
 	var x [][]float32
@@ -267,6 +305,8 @@ func SlicesFromFloat32Column(col *array.Column) [][]float32 {
 	return x
 }
 
+// SlicesFromFloat64Column returns a slice of slices holding the
+// data from the given column.
 func SlicesFromFloat64Column(col *array.Column) [][]float64 {
 
 	var x [][]float64

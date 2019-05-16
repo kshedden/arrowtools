@@ -10,6 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// ColumnsEqual returns a boolean indicating whether the data in the
+// two given columns are equal.  If the data are not equal, a brief
+// message describing the difference is returned.
 func ColumnsEqual(col1, col2 *array.Column) (bool, string) {
 
 	if col1.DataType().ID() != col2.DataType().ID() {
@@ -108,6 +111,9 @@ func ColumnsEqual(col1, col2 *array.Column) (bool, string) {
 	return true, ""
 }
 
+// TablesEqual returns a boolean indicating whether the two
+// given tables contain equal data.  A message describing any
+// differences is also returned.
 func TablesEqual(tbl1, tbl2 array.Table) (bool, string) {
 
 	m1 := tbl1.NumCols()

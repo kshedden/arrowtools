@@ -7,6 +7,8 @@ import (
 )
 
 {{ range . }}
+    // ColumnFrom{{ .Utype }}Slices returns a pointer to an array.Column value that
+    // holds the given {{ .Type }} data.
     func ColumnFrom{{ .Utype }}Slices(x [][]{{ .Type }}, name string) *array.Column {
 
     	mem := memory.DefaultAllocator
@@ -25,6 +27,8 @@ import (
 {{ end }}
 
 {{ range . }}
+    // SlicesFrom{{ .Utype }}Column returns a slice of slices holding the
+    // data from the given column.
     func SlicesFrom{{ .Utype }}Column(col *array.Column) [][]{{ .Type }} {
 
     	var x [][]{{ .Type }}
