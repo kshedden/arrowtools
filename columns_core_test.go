@@ -10,15 +10,15 @@ import (
 func TestAppendColumns1(t *testing.T) {
 
 	x := [][]float64{
-		[]float64{1, 2, 3},
-		[]float64{4, 5},
-		[]float64{6, 7, 8},
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	y := [][]float32{
-		[]float32{1, 2, 3},
-		[]float32{4, 5},
-		[]float32{6, 7, 8},
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	col1 := ColumnFromFloat64Slices(x, "x")
@@ -38,15 +38,15 @@ func TestAppendColumns1(t *testing.T) {
 func TestDropColumns1(t *testing.T) {
 
 	x := [][]float64{
-		[]float64{1, 2, 3},
-		[]float64{4, 5},
-		[]float64{6, 7, 8},
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	y := [][]float32{
-		[]float32{1, 2, 3},
-		[]float32{4, 5},
-		[]float32{6, 7, 8},
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	col1 := ColumnFromFloat64Slices(x, "x")
@@ -80,21 +80,21 @@ func TestSelectColumns1(t *testing.T) {
 func TestReplaceColumns1(t *testing.T) {
 
 	x := [][]float64{
-		[]float64{1, 2, 3},
-		[]float64{4, 5},
-		[]float64{6, 7, 8},
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	y := [][]float32{
-		[]float32{1, 2, 3},
-		[]float32{4, 5},
-		[]float32{6, 7, 8},
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	z := [][]float64{
-		[]float64{1, 3, 2},
-		[]float64{4, 5},
-		[]float64{6, 7, 8},
+		{1, 3, 2},
+		{4, 5},
+		{6, 7, 8},
 	}
 
 	col1 := ColumnFromFloat64Slices(x, "x")
