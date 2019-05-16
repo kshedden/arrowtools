@@ -36,28 +36,33 @@ type reader struct {
 	header []string
 }
 
+// Option provides a configuration option for the CSV reader.
 type Option func(*reader)
 
+// WithHeader indicates that the CSV file has a header row.
 func WithHeader() Option {
 	return func(rdr *reader) {
 		rdr.hasHeader = true
 	}
 }
 
+// WithComma defines a delimiter to the underlying csv reader.  If not set, the delimiter
+// is a comma.
 func WithComma(c rune) Option {
 	return func(rdr *reader) {
 		rdr.comma = c
 	}
 }
 
+// WithComment provides a comment symbol to the underlying csv reader.
 func WithComment(c rune) Option {
 	return func(rdr *reader) {
 		rdr.comment = c
 	}
 }
 
-// Reader is a CSV reader that produces a Table from the data in a CSV source.
-// If a header is present, the provided Schema can contain only a subset of the
+// ReadCSV is a CSV reader that produces a arrow Table from the data in a CSV source.
+// If a header row is present, the provided Schema can contain only a subset of the
 // columns in the file, and only those columns are retained.  If there is no
 // header, then the length of the schema should match the number of columns
 // in the source file.

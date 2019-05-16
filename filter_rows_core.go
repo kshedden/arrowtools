@@ -5,6 +5,8 @@ import (
 	"github.com/apache/arrow/go/arrow/memory"
 )
 
+// SelectFunc is a function that uses the provided, pre-allocated boolean array to
+// specify which rows of the data chunk are selected.
 type SelectFunc func([]array.Interface, []bool)
 
 // FilterRows selects a subset of the rows of a table.  Rows where the
