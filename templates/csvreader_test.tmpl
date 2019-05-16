@@ -1,0 +1,47 @@
+package arrowtools
+
+import (
+	"bytes"
+	"io"
+	"testing"
+
+	"github.com/apache/arrow/go/arrow"
+	"github.com/apache/arrow/go/arrow/array"
+)
+
+func TestCSV1(t *testing.T) {
+
+	var buf bytes.Buffer
+	io.WriteString(&buf, "xfloat64,xfloat32,xint64,xint32,xint16,xint8,xuint64,xuint32,xuint16,xuint8\n")
+	io.WriteString(&buf, "0,0,0,0,0,0,0,0,0,0\n")
+	io.WriteString(&buf, "1,1,1,1,1,1,1,1,1,1\n")
+	io.WriteString(&buf, "2,2,2,2,2,2,2,2,2,2\n")
+	io.WriteString(&buf, "3,3,3,3,3,3,3,3,3,3\n")
+
+    {{ range . }}
+	    x{{ .Type }} := ColumnFrom{{ .Utype }}Slices([][]{{ .Type }}{ {0, 1, 2, 3}, }, "x{{ .Type }}")
+	{{- end }}
+
+	cols := []array.Column{
+	    {{- range . }}
+	        *x{{ .Type }},
+	    {{- end }}
+	}
+
+	fields := []arrow.Field{
+	    {{- range . }}
+	        {Name: "x{{ .Type }}", Type: arrow.PrimitiveTypes.{{ .Utype }}},
+	    {{- end }}
+    }
+
+    schema := arrow.NewSchema(fields, nil)
+
+	tbl1 := ReadCSV(&buf, schema, WithHeader())
+
+	tbl2 := array.NewTable(schema, cols, -1)
+
+    if b, msg := TablesEqual(tbl1, tbl2); !b {
+    	println(msg)
+    	t.Fail()
+    }
+}

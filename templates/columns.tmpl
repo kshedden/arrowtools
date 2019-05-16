@@ -1,0 +1,38 @@
+package arrowtools
+
+import (
+	"github.com/apache/arrow/go/arrow"
+	"github.com/apache/arrow/go/arrow/array"
+	"github.com/apache/arrow/go/arrow/memory"
+)
+
+{{ range . }}
+    func ColumnFrom{{ .Utype }}Slices(x [][]{{ .Type }}, name string) *array.Column {
+
+    	mem := memory.DefaultAllocator
+    	var y []array.Interface
+
+    	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.{{ .Utype }}}
+    	bld := array.New{{ .Utype }}Builder(mem)
+    	for _, z := range x {
+    		bld.AppendValues(z, nil)
+    		y = append(y, bld.NewArray())
+    	}
+
+    	chunks := array.NewChunked(fld.Type, y)
+    	return array.NewColumn(fld, chunks)
+    }
+{{ end }}
+
+{{ range . }}
+    func SlicesFrom{{ .Utype }}Column(col *array.Column) [][]{{ .Type }} {
+
+    	var x [][]{{ .Type }}
+
+    	for _, c := range col.Data().Chunks() {
+    		x = append(x, array.New{{ .Utype }}Data(c.Data()).{{ .Utype }}Values())
+    	}
+
+    	return x
+    }
+{{ end }}

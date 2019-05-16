@@ -1,0 +1,48 @@
+package arrowtools
+
+import (
+	"github.com/apache/arrow/go/arrow"
+	"github.com/apache/arrow/go/arrow/array"
+	"github.com/apache/arrow/go/arrow/memory"
+)
+
+func getSchema(slices []interface{}, names []string) *arrow.Schema {
+
+	var fields []arrow.Field
+
+	for i, x := range slices {
+		switch x.(type) {
+		{{- range . }}
+		case []{{ .Type }}:
+			fields = append(fields, arrow.Field{Name: names[i], Type: arrow.PrimitiveTypes.{{ .Utype }}})
+		{{- end }}
+		default:
+			panic("unkown type")
+		}
+	}
+
+	return arrow.NewSchema(fields, nil)
+}
+
+func TableFromSlices(slices []interface{}, names []string) array.Table {
+
+	schema := getSchema(slices, names)
+	mem := memory.DefaultAllocator
+	bld := array.NewRecordBuilder(mem, schema)
+
+	for i, x := range slices {
+		switch x := x.(type) {
+		{{- range . }}
+		case []{{ .Type }}:
+			bld.Field(i).(*array.{{ .Utype }}Builder).AppendValues(x, nil)
+		{{- end }}
+		default:
+			panic("unkown type\n")
+		}
+	}
+
+	rec1 := bld.NewRecord()
+	tbl := array.NewTableFromRecords(schema, []array.Record{rec1})
+
+	return tbl
+}

@@ -1,0 +1,78 @@
+package arrowtools
+
+import (
+	"fmt"
+
+	"github.com/apache/arrow/go/arrow"
+	"github.com/apache/arrow/go/arrow/array"
+	"github.com/stretchr/testify/assert"
+)
+
+func ColumnsEqual(col1, col2 *array.Column) (bool, string) {
+
+	if col1.DataType().ID() != col2.DataType().ID() {
+	    return false, "Inconsistent types"
+	}
+
+    chunks1 := col1.Data().Chunks()
+    chunks2 := col2.Data().Chunks()
+
+    if len(chunks1) != len(chunks2) {
+        return false, fmt.Sprintf("Unequal chunk counts, %d != %d", len(chunks1), len(chunks2))
+    }
+
+	for k := range chunks1 {
+
+        chunk1 := chunks1[k]
+        chunk2 := chunks2[k]
+
+		switch col1.DataType() {
+            {{- range . }}
+			case arrow.PrimitiveTypes.{{ .Utype }}:
+				y1 := array.New{{ .Utype }}Data(chunk1.Data()).{{ .Utype }}Values()
+				y2 := array.New{{ .Utype }}Data(chunk2.Data()).{{ .Utype }}Values()
+				if !assert.ObjectsAreEqualValues(y1, y2) {
+					return false, fmt.Sprintf("Unequal {{ .Type }} values in chunk %d\n", k)
+				}
+			{{- end }}
+			case arrow.BinaryTypes.String:
+				y1 := array.NewStringData(chunk1.Data())
+				y2 := array.NewStringData(chunk2.Data())
+				if y1.Len() != y2.Len() {
+					return false, fmt.Sprintf("Unequal lengths of string values in chunk %d\n", k)
+				}
+				for i := 0; i < y1.Len(); i++ {
+					if y1.Value(i) != y2.Value(i) {
+						return false, fmt.Sprintf("Unequal string values in chunk %d\n", k)
+					}
+				}
+			default:
+				panic("unknown type")
+		}
+	}
+
+	return true, ""
+}
+
+
+func TablesEqual(tbl1, tbl2 array.Table) (bool, string) {
+
+    m1 := tbl1.NumCols()
+    m2 := tbl2.NumCols()
+    if m1 != m2 {
+        return false, fmt.Sprintf("Inconsistent number of columns, %d != %d", m1, m2)
+    }
+
+    for i := 0; i<int(m1); i++ {
+
+        col1 := tbl1.Column(i)
+        col2 := tbl2.Column(i)
+
+        b, msg := ColumnsEqual(col1, col2)
+        if !b {
+            return false, msg
+        }
+    }
+
+    return true, ""
+}

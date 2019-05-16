@@ -1,0 +1,41 @@
+package arrowtools
+
+import (
+	"github.com/apache/arrow/go/arrow/array"
+    "testing"
+)
+
+func TestGetSliceFromRecord(t *testing.T) {
+
+    var cols []array.Column
+    {{- range . }}
+        {
+            x := [][]{{ .Type }}{ {3, 4, 5}, {6, 7} }
+        	col := ColumnFrom{{ .Utype }}Slices(x, "{{ .Utype }}")
+        	cols = append(cols, *col)
+        }
+    {{- end }}
+
+    tbl := TableFromColumns(cols)
+    tr := array.NewTableReader(tbl, 1000)
+	v := 3
+
+    for tr.Next() {
+
+		rec := tr.Record()
+		j := 0
+
+	    {{- range . }}
+	        {
+	        	x := Get{{ .Utype }}SliceFromRecord(rec, j)
+                for i := range x {
+                    if x[i] != {{ .Type }}(v + i) {
+                    	t.Fail()
+                    }
+                }
+	        	j++
+	        }
+	    {{- end }}
+	    v += 3
+    }
+}

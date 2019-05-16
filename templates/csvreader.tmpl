@@ -1,0 +1,56 @@
+package arrowtools
+
+import (
+	"strconv"
+
+	"github.com/apache/arrow/go/arrow"
+	"github.com/apache/arrow/go/arrow/array"
+)
+
+
+func (rdr *reader) readRow(recs []string) {
+
+	for i, str := range recs {
+
+		switch rdr.schema.Field(i).Type.(type) {
+        {{- range . }}
+			case *arrow.{{ .Utype }}Type:
+				v, b := rdr.read{{ .Utype }}(str)
+				if b {
+					rdr.bld.Field(i).AppendNull()
+				} else {
+					rdr.bld.Field(i).(*array.{{ .Utype }}Builder).Append(v)
+				}
+        {{- end }}
+		case *arrow.StringType:
+		    // No way to define nulls now on strings
+			// r.bld.Field(i).AppendNull()
+			rdr.bld.Field(i).(*array.StringBuilder).Append(str)
+		case *arrow.BooleanType:
+			var v bool
+			switch str {
+			case "false", "False", "0":
+				v = false
+			case "true", "True", "1":
+				v = true
+			}
+			rdr.bld.Field(i).(*array.BooleanBuilder).Append(v)
+        default:
+            panic("unknown type")
+		}
+	}
+}
+
+{{ range . }}
+	func (r *reader) read{{ .Utype }}(str string) ({{ .Type }}, bool) {
+        {{- if eq .ConvGroup "i" }}
+		    v, err := strconv.ParseInt(str, 10, 8)
+		{{- else }}
+            v, err := strconv.ParseFloat(str, 64)
+		{{- end }}
+		if err != nil {
+			return 0, true
+		}
+		return {{ .Type }}(v), false
+	}
+{{ end }}

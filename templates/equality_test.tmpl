@@ -1,0 +1,82 @@
+package arrowtools
+
+import (
+	"testing"
+)
+
+{{ range . }}
+    func TestEquality{{ .Utype }}(t *testing.T) {
+
+        {{ if eq .Utype "float32" }}
+            v := [][]float64{
+        {{- else }}
+            v := [][]float32{
+        {{- end }}
+            {0, 1, 2, 3},
+            {4, 5, 6},
+            {7, 8},
+        }
+
+        w := [][]{{ .Type }}{
+            {0, 1, 2, 3},
+            {4, 5, 6},
+            {7, 8},
+        }
+
+        x := [][]{{ .Type }}{
+            {0, 1, 2, 3},
+            {4, 5, 6},
+            {7},
+        }
+
+        y := [][]{{ .Type }}{
+            {0, 1, 2, 4},
+            {4, 5, 6},
+            {7, 8},
+        }
+
+        z := [][]{{ .Type }}{
+            {0, 1, 2, 3},
+            {4, 5, 6},
+            {7, 8},
+        }
+
+        {{ if eq .Utype "float32" }}
+            col1 := ColumnFromFloat64Slices(v, "name")
+		{{- else }}
+            col1 := ColumnFromFloat32Slices(v, "name")
+        {{- end }}
+        col2 := ColumnFrom{{ .Utype }}Slices(w, "name")
+        col3 := ColumnFrom{{ .Utype }}Slices(x, "name")
+        col4 := ColumnFrom{{ .Utype }}Slices(y, "name")
+        col5 := ColumnFrom{{ .Utype }}Slices(z, "name")
+
+        if b, _ := ColumnsEqual(col2, col5); !b {
+            t.Fail()
+        }
+
+        if b, _ := ColumnsEqual(col5, col2); !b {
+            t.Fail()
+        }
+
+        if b, _ := ColumnsEqual(col1, col3); b {
+            t.Fail()
+        }
+
+        if b, _ := ColumnsEqual(col2, col3); b {
+            t.Fail()
+        }
+
+        if b, _ := ColumnsEqual(col3, col2); b {
+            t.Fail()
+        }
+
+        if b, _ := ColumnsEqual(col1, col4); b {
+            t.Fail()
+        }
+
+        if b, _ := ColumnsEqual(col4, col1); b {
+            t.Fail()
+        }
+    }
+{{ end }}

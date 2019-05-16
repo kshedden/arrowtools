@@ -1,0 +1,11 @@
+package arrowtools
+
+import (
+	"github.com/apache/arrow/go/arrow/array"
+)
+
+{{ range . }}
+    func Get{{ .Utype }}SliceFromRecord(rec array.Record, pos int) []{{ .Type }} {
+        return array.New{{ .Utype }}Data(rec.Column(pos).Data()).{{ .Utype }}Values()
+    }
+{{ end }}
