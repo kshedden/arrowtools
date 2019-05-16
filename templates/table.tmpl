@@ -5,6 +5,8 @@ import (
 )
 
 {{ range . }}
+    // Get{{ .Utype }}SliceFromRecord returns a slice corresponding to the given
+    // column position in the given record.
     func Get{{ .Utype }}SliceFromRecord(rec array.Record, pos int) []{{ .Type }} {
         return array.New{{ .Utype }}Data(rec.Column(pos).Data()).{{ .Utype }}Values()
     }
