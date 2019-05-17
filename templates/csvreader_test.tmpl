@@ -19,7 +19,7 @@ func TestCSV1(t *testing.T) {
 	io.WriteString(&buf, "3,3,3,3,3,3,3,3,3,3\n")
 
     {{ range . }}
-	    x{{ .Type }} := ColumnFrom{{ .Utype }}Slices([][]{{ .Type }}{ {0, 1, 2, 3}, }, "x{{ .Type }}")
+	    x{{ .Type }} := ColumnFrom{{ .Utype }}Slices([][]{{ .Type }}{ {0, 1, 2, 3}, }, nil, "x{{ .Type }}")
 	{{- end }}
 
 	cols := []array.Column{

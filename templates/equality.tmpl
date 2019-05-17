@@ -32,10 +32,13 @@ func ColumnsEqual(col1, col2 *array.Column) (bool, string) {
 		switch col1.DataType() {
             {{- range . }}
 			case arrow.PrimitiveTypes.{{ .Utype }}:
-				y1 := array.New{{ .Utype }}Data(chunk1.Data()).{{ .Utype }}Values()
-				y2 := array.New{{ .Utype }}Data(chunk2.Data()).{{ .Utype }}Values()
-				if !assert.ObjectsAreEqualValues(y1, y2) {
-					return false, fmt.Sprintf("Unequal {{ .Type }} values in chunk %d\n", k)
+				y1 := array.New{{ .Utype }}Data(chunk1.Data())
+				y2 := array.New{{ .Utype }}Data(chunk2.Data())
+				if !assert.ObjectsAreEqualValues(y1.{{ .Utype }}Values(), y2.{{ .Utype }}Values()) {
+					return false, fmt.Sprintf("Unequal {{ .Type }} values in chunk %d.\n", k)
+				}
+				if !assert.ObjectsAreEqualValues(y1.NullBitmapBytes(), y2.NullBitmapBytes()) {
+					return false, fmt.Sprintf("Unequal valid mask in chunk %d.\n", k)
 				}
 			{{- end }}
 			case arrow.BinaryTypes.String:
@@ -43,6 +46,9 @@ func ColumnsEqual(col1, col2 *array.Column) (bool, string) {
 				y2 := array.NewStringData(chunk2.Data())
 				if y1.Len() != y2.Len() {
 					return false, fmt.Sprintf("Unequal lengths of string values in chunk %d\n", k)
+				}
+				if !assert.ObjectsAreEqualValues(y1.NullBitmapBytes(), y2.NullBitmapBytes()) {
+					return false, fmt.Sprintf("Unequal valid mask in chunk %d.\n", k)
 				}
 				for i := 0; i < y1.Len(); i++ {
 					if y1.Value(i) != y2.Value(i) {

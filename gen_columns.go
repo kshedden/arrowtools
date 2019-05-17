@@ -10,15 +10,19 @@ import (
 
 // ColumnFromUint8Slices returns a pointer to an array.Column value that
 // holds the given uint8 data.
-func ColumnFromUint8Slices(x [][]uint8, name string) *array.Column {
+func ColumnFromUint8Slices(x [][]uint8, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Uint8}
 	bld := array.NewUint8Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -28,15 +32,19 @@ func ColumnFromUint8Slices(x [][]uint8, name string) *array.Column {
 
 // ColumnFromUint16Slices returns a pointer to an array.Column value that
 // holds the given uint16 data.
-func ColumnFromUint16Slices(x [][]uint16, name string) *array.Column {
+func ColumnFromUint16Slices(x [][]uint16, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Uint16}
 	bld := array.NewUint16Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -46,15 +54,19 @@ func ColumnFromUint16Slices(x [][]uint16, name string) *array.Column {
 
 // ColumnFromUint32Slices returns a pointer to an array.Column value that
 // holds the given uint32 data.
-func ColumnFromUint32Slices(x [][]uint32, name string) *array.Column {
+func ColumnFromUint32Slices(x [][]uint32, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Uint32}
 	bld := array.NewUint32Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -64,15 +76,19 @@ func ColumnFromUint32Slices(x [][]uint32, name string) *array.Column {
 
 // ColumnFromUint64Slices returns a pointer to an array.Column value that
 // holds the given uint64 data.
-func ColumnFromUint64Slices(x [][]uint64, name string) *array.Column {
+func ColumnFromUint64Slices(x [][]uint64, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Uint64}
 	bld := array.NewUint64Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -82,15 +98,19 @@ func ColumnFromUint64Slices(x [][]uint64, name string) *array.Column {
 
 // ColumnFromInt8Slices returns a pointer to an array.Column value that
 // holds the given int8 data.
-func ColumnFromInt8Slices(x [][]int8, name string) *array.Column {
+func ColumnFromInt8Slices(x [][]int8, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Int8}
 	bld := array.NewInt8Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -100,15 +120,19 @@ func ColumnFromInt8Slices(x [][]int8, name string) *array.Column {
 
 // ColumnFromInt16Slices returns a pointer to an array.Column value that
 // holds the given int16 data.
-func ColumnFromInt16Slices(x [][]int16, name string) *array.Column {
+func ColumnFromInt16Slices(x [][]int16, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Int16}
 	bld := array.NewInt16Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -118,15 +142,19 @@ func ColumnFromInt16Slices(x [][]int16, name string) *array.Column {
 
 // ColumnFromInt32Slices returns a pointer to an array.Column value that
 // holds the given int32 data.
-func ColumnFromInt32Slices(x [][]int32, name string) *array.Column {
+func ColumnFromInt32Slices(x [][]int32, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Int32}
 	bld := array.NewInt32Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -136,15 +164,19 @@ func ColumnFromInt32Slices(x [][]int32, name string) *array.Column {
 
 // ColumnFromInt64Slices returns a pointer to an array.Column value that
 // holds the given int64 data.
-func ColumnFromInt64Slices(x [][]int64, name string) *array.Column {
+func ColumnFromInt64Slices(x [][]int64, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Int64}
 	bld := array.NewInt64Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -154,15 +186,19 @@ func ColumnFromInt64Slices(x [][]int64, name string) *array.Column {
 
 // ColumnFromFloat32Slices returns a pointer to an array.Column value that
 // holds the given float32 data.
-func ColumnFromFloat32Slices(x [][]float32, name string) *array.Column {
+func ColumnFromFloat32Slices(x [][]float32, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Float32}
 	bld := array.NewFloat32Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 
@@ -172,15 +208,19 @@ func ColumnFromFloat32Slices(x [][]float32, name string) *array.Column {
 
 // ColumnFromFloat64Slices returns a pointer to an array.Column value that
 // holds the given float64 data.
-func ColumnFromFloat64Slices(x [][]float64, name string) *array.Column {
+func ColumnFromFloat64Slices(x [][]float64, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
 
 	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.Float64}
 	bld := array.NewFloat64Builder(mem)
-	for _, z := range x {
-		bld.AppendValues(z, nil)
+	for i, z := range x {
+		var v []bool
+		if valid != nil {
+			v = valid[i]
+		}
+		bld.AppendValues(z, v)
 		y = append(y, bld.NewArray())
 	}
 

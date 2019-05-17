@@ -37,13 +37,21 @@ func reduce(rec array.Record, bld *array.RecordBuilder, inds []int) {
 			case arrow.PrimitiveTypes.{{ .Utype }}:
 				x := array.New{{ .Utype }}Data(da)
 				for _, i := range inds {
-					bld.Field(j).(*array.{{ .Utype }}Builder).Append(x.Value(i))
+				    if x.IsNull(i) {
+						bld.Field(j).(*array.{{ .Utype }}Builder).AppendNull()
+				    } else {
+						bld.Field(j).(*array.{{ .Utype }}Builder).Append(x.Value(i))
+					}
 				}
 		{{- end }}
 		case arrow.BinaryTypes.String:
 			x := array.NewStringData(da)
 			for _, i := range inds {
-				bld.Field(j).(*array.StringBuilder).Append(x.Value(i))
+				if x.IsNull(i) {
+					bld.Field(j).(*array.StringBuilder).AppendNull()
+				} else {
+					bld.Field(j).(*array.StringBuilder).Append(x.Value(i))
+				}
 			}
 		default:
 			panic("unknown type")

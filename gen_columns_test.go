@@ -14,7 +14,7 @@ func TestColumnSliceUint8(t *testing.T) {
 		[]uint8{8, 9},
 	}
 
-	col := ColumnFromUint8Slices(x, "name")
+	col := ColumnFromUint8Slices(x, nil, "name")
 	y := SlicesFromUint8Column(col)
 
 	if len(x) != len(y) {
@@ -38,7 +38,7 @@ func TestColumnSliceUint16(t *testing.T) {
 		[]uint16{8, 9},
 	}
 
-	col := ColumnFromUint16Slices(x, "name")
+	col := ColumnFromUint16Slices(x, nil, "name")
 	y := SlicesFromUint16Column(col)
 
 	if len(x) != len(y) {
@@ -62,7 +62,7 @@ func TestColumnSliceUint32(t *testing.T) {
 		[]uint32{8, 9},
 	}
 
-	col := ColumnFromUint32Slices(x, "name")
+	col := ColumnFromUint32Slices(x, nil, "name")
 	y := SlicesFromUint32Column(col)
 
 	if len(x) != len(y) {
@@ -86,7 +86,7 @@ func TestColumnSliceUint64(t *testing.T) {
 		[]uint64{8, 9},
 	}
 
-	col := ColumnFromUint64Slices(x, "name")
+	col := ColumnFromUint64Slices(x, nil, "name")
 	y := SlicesFromUint64Column(col)
 
 	if len(x) != len(y) {
@@ -110,7 +110,7 @@ func TestColumnSliceInt8(t *testing.T) {
 		[]int8{8, 9},
 	}
 
-	col := ColumnFromInt8Slices(x, "name")
+	col := ColumnFromInt8Slices(x, nil, "name")
 	y := SlicesFromInt8Column(col)
 
 	if len(x) != len(y) {
@@ -134,7 +134,7 @@ func TestColumnSliceInt16(t *testing.T) {
 		[]int16{8, 9},
 	}
 
-	col := ColumnFromInt16Slices(x, "name")
+	col := ColumnFromInt16Slices(x, nil, "name")
 	y := SlicesFromInt16Column(col)
 
 	if len(x) != len(y) {
@@ -158,7 +158,7 @@ func TestColumnSliceInt32(t *testing.T) {
 		[]int32{8, 9},
 	}
 
-	col := ColumnFromInt32Slices(x, "name")
+	col := ColumnFromInt32Slices(x, nil, "name")
 	y := SlicesFromInt32Column(col)
 
 	if len(x) != len(y) {
@@ -182,7 +182,7 @@ func TestColumnSliceInt64(t *testing.T) {
 		[]int64{8, 9},
 	}
 
-	col := ColumnFromInt64Slices(x, "name")
+	col := ColumnFromInt64Slices(x, nil, "name")
 	y := SlicesFromInt64Column(col)
 
 	if len(x) != len(y) {
@@ -206,7 +206,7 @@ func TestColumnSliceFloat32(t *testing.T) {
 		[]float32{8, 9},
 	}
 
-	col := ColumnFromFloat32Slices(x, "name")
+	col := ColumnFromFloat32Slices(x, nil, "name")
 	y := SlicesFromFloat32Column(col)
 
 	if len(x) != len(y) {
@@ -230,7 +230,7 @@ func TestColumnSliceFloat64(t *testing.T) {
 		[]float64{8, 9},
 	}
 
-	col := ColumnFromFloat64Slices(x, "name")
+	col := ColumnFromFloat64Slices(x, nil, "name")
 	y := SlicesFromFloat64Column(col)
 
 	if len(x) != len(y) {

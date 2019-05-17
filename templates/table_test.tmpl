@@ -11,7 +11,7 @@ func TestGetSliceFromRecord(t *testing.T) {
     {{- range . }}
         {
             x := [][]{{ .Type }}{ {3, 4, 5}, {6, 7} }
-        	col := ColumnFrom{{ .Utype }}Slices(x, "{{ .Utype }}")
+        	col := ColumnFrom{{ .Utype }}Slices(x, nil, "{{ .Utype }}")
         	cols = append(cols, *col)
         }
     {{- end }}

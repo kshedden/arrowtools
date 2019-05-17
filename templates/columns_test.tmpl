@@ -13,7 +13,7 @@ import (
         	[]{{ .Type }}{8, 9},
         }
 
-	    col := ColumnFrom{{ .Utype }}Slices(x, "name")
+	    col := ColumnFrom{{ .Utype }}Slices(x, nil, "name")
 	    y := SlicesFrom{{ .Utype }}Column(col)
 
 		if len(x) != len(y) {

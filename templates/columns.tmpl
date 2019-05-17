@@ -9,15 +9,19 @@ import (
 {{ range . }}
     // ColumnFrom{{ .Utype }}Slices returns a pointer to an array.Column value that
     // holds the given {{ .Type }} data.
-    func ColumnFrom{{ .Utype }}Slices(x [][]{{ .Type }}, name string) *array.Column {
+    func ColumnFrom{{ .Utype }}Slices(x [][]{{ .Type }}, valid [][]bool, name string) *array.Column {
 
     	mem := memory.DefaultAllocator
     	var y []array.Interface
 
     	fld := arrow.Field{Name: name, Type: arrow.PrimitiveTypes.{{ .Utype }}}
     	bld := array.New{{ .Utype }}Builder(mem)
-    	for _, z := range x {
-    		bld.AppendValues(z, nil)
+    	for i, z := range x {
+    	    var v []bool
+    	    if valid != nil {
+    	        v = valid[i]
+    	    }
+    		bld.AppendValues(z, v)
     		y = append(y, bld.NewArray())
     	}
 

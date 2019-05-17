@@ -21,8 +21,8 @@ func TestAppendColumns1(t *testing.T) {
 		{6, 7, 8},
 	}
 
-	col1 := ColumnFromFloat64Slices(x, "x")
-	col2 := ColumnFromFloat32Slices(y, "y")
+	col1 := ColumnFromFloat64Slices(x, nil, "x")
+	col2 := ColumnFromFloat32Slices(y, nil, "y")
 
 	tbl1 := TableFromColumns([]array.Column{*col1})
 	tbl2 := AppendColumns(tbl1, []array.Column{*col2})
@@ -49,8 +49,8 @@ func TestDropColumns1(t *testing.T) {
 		{6, 7, 8},
 	}
 
-	col1 := ColumnFromFloat64Slices(x, "x")
-	col2 := ColumnFromFloat32Slices(y, "y")
+	col1 := ColumnFromFloat64Slices(x, nil, "x")
+	col2 := ColumnFromFloat32Slices(y, nil, "y")
 
 	tbl1 := TableFromColumns([]array.Column{*col1, *col2})
 	tbl2 := DropColumns(tbl1, "x")
@@ -97,9 +97,9 @@ func TestReplaceColumns1(t *testing.T) {
 		{6, 7, 8},
 	}
 
-	col1 := ColumnFromFloat64Slices(x, "x")
-	col2 := ColumnFromFloat32Slices(y, "y")
-	col3 := ColumnFromFloat64Slices(z, "x")
+	col1 := ColumnFromFloat64Slices(x, nil, "x")
+	col2 := ColumnFromFloat32Slices(y, nil, "y")
+	col3 := ColumnFromFloat64Slices(z, nil, "x")
 
 	tbl1 := TableFromColumns([]array.Column{*col1, *col2})
 	tbl2 := TableFromColumns([]array.Column{*col3, *col2})
@@ -133,9 +133,9 @@ func TestTableFromColumns1(t *testing.T) {
 		{6, 7, 8},
 	}
 
-	col1 := ColumnFromFloat64Slices(x, "x")
-	col2 := ColumnFromFloat32Slices(y, "y")
-	col3 := ColumnFromUint64Slices(z, "z")
+	col1 := ColumnFromFloat64Slices(x, nil, "x")
+	col2 := ColumnFromFloat32Slices(y, nil, "y")
+	col3 := ColumnFromUint64Slices(z, nil, "z")
 
 	tbl1 := TableFromColumns([]array.Column{*col1, *col2, *col3})
 

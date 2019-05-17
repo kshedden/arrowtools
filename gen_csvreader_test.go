@@ -20,16 +20,16 @@ func TestCSV1(t *testing.T) {
 	io.WriteString(&buf, "2,2,2,2,2,2,2,2,2,2\n")
 	io.WriteString(&buf, "3,3,3,3,3,3,3,3,3,3\n")
 
-	xuint8 := ColumnFromUint8Slices([][]uint8{{0, 1, 2, 3}}, "xuint8")
-	xuint16 := ColumnFromUint16Slices([][]uint16{{0, 1, 2, 3}}, "xuint16")
-	xuint32 := ColumnFromUint32Slices([][]uint32{{0, 1, 2, 3}}, "xuint32")
-	xuint64 := ColumnFromUint64Slices([][]uint64{{0, 1, 2, 3}}, "xuint64")
-	xint8 := ColumnFromInt8Slices([][]int8{{0, 1, 2, 3}}, "xint8")
-	xint16 := ColumnFromInt16Slices([][]int16{{0, 1, 2, 3}}, "xint16")
-	xint32 := ColumnFromInt32Slices([][]int32{{0, 1, 2, 3}}, "xint32")
-	xint64 := ColumnFromInt64Slices([][]int64{{0, 1, 2, 3}}, "xint64")
-	xfloat32 := ColumnFromFloat32Slices([][]float32{{0, 1, 2, 3}}, "xfloat32")
-	xfloat64 := ColumnFromFloat64Slices([][]float64{{0, 1, 2, 3}}, "xfloat64")
+	xuint8 := ColumnFromUint8Slices([][]uint8{{0, 1, 2, 3}}, nil, "xuint8")
+	xuint16 := ColumnFromUint16Slices([][]uint16{{0, 1, 2, 3}}, nil, "xuint16")
+	xuint32 := ColumnFromUint32Slices([][]uint32{{0, 1, 2, 3}}, nil, "xuint32")
+	xuint64 := ColumnFromUint64Slices([][]uint64{{0, 1, 2, 3}}, nil, "xuint64")
+	xint8 := ColumnFromInt8Slices([][]int8{{0, 1, 2, 3}}, nil, "xint8")
+	xint16 := ColumnFromInt16Slices([][]int16{{0, 1, 2, 3}}, nil, "xint16")
+	xint32 := ColumnFromInt32Slices([][]int32{{0, 1, 2, 3}}, nil, "xint32")
+	xint64 := ColumnFromInt64Slices([][]int64{{0, 1, 2, 3}}, nil, "xint64")
+	xfloat32 := ColumnFromFloat32Slices([][]float32{{0, 1, 2, 3}}, nil, "xfloat32")
+	xfloat64 := ColumnFromFloat64Slices([][]float64{{0, 1, 2, 3}}, nil, "xfloat64")
 
 	cols := []array.Column{
 		*xuint8,

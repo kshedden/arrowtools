@@ -12,52 +12,52 @@ func TestGetSliceFromRecord(t *testing.T) {
 	var cols []array.Column
 	{
 		x := [][]uint8{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint8Slices(x, "Uint8")
+		col := ColumnFromUint8Slices(x, nil, "Uint8")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]uint16{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint16Slices(x, "Uint16")
+		col := ColumnFromUint16Slices(x, nil, "Uint16")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]uint32{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint32Slices(x, "Uint32")
+		col := ColumnFromUint32Slices(x, nil, "Uint32")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]uint64{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint64Slices(x, "Uint64")
+		col := ColumnFromUint64Slices(x, nil, "Uint64")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int8{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt8Slices(x, "Int8")
+		col := ColumnFromInt8Slices(x, nil, "Int8")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int16{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt16Slices(x, "Int16")
+		col := ColumnFromInt16Slices(x, nil, "Int16")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int32{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt32Slices(x, "Int32")
+		col := ColumnFromInt32Slices(x, nil, "Int32")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int64{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt64Slices(x, "Int64")
+		col := ColumnFromInt64Slices(x, nil, "Int64")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]float32{{3, 4, 5}, {6, 7}}
-		col := ColumnFromFloat32Slices(x, "Float32")
+		col := ColumnFromFloat32Slices(x, nil, "Float32")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]float64{{3, 4, 5}, {6, 7}}
-		col := ColumnFromFloat64Slices(x, "Float64")
+		col := ColumnFromFloat64Slices(x, nil, "Float64")
 		cols = append(cols, *col)
 	}
 
