@@ -66,12 +66,12 @@ func WithComment(c rune) Option {
 // columns in the file, and only those columns are retained.  If there is no
 // header, then the length of the schema should match the number of columns
 // in the source file.
-func ReadCSV(r io.Reader, schema *arrow.Schema, opts ...Option) array.Table {
+func ReadCSV(r io.Reader, fields []arrow.Field, opts ...Option) array.Table {
 
 	rdr := &reader{
 		r:      r,
 		cr:     csv.NewReader(r),
-		schema: schema,
+		schema: arrow.NewSchema(fields, nil),
 	}
 
 	for _, opt := range opts {
@@ -120,6 +120,11 @@ func (rdr *reader) readHeader() {
 
 func (rdr *reader) Read() array.Table {
 
+	var recx []string
+	if rdr.useCols != nil {
+		recx = make([]string, len(rdr.useCols))
+	}
+
 	for {
 		recs, err := rdr.cr.Read()
 		if err == io.EOF {
@@ -130,21 +135,21 @@ func (rdr *reader) Read() array.Table {
 
 		if rdr.useCols != nil {
 			for i, j := range rdr.useCols {
-				recs[i] = recs[j]
+				recx[i] = recs[j]
 			}
-			recs = recs[0:len(rdr.useCols)]
+		} else {
+			recx = recs
 		}
 
-		if len(recs) != len(rdr.schema.Fields()) {
+		if len(recx) != len(rdr.schema.Fields()) {
 			panic("Inconsistent number of columns\n")
 		}
 
-		rdr.readRow(recs)
+		rdr.readRow(recx)
 	}
 
-	rec1 := rdr.bld.NewRecord()
-
-	tbl := array.NewTableFromRecords(rdr.schema, []array.Record{rec1})
+	nr := rdr.bld.NewRecord()
+	tbl := array.NewTableFromRecords(rdr.schema, []array.Record{nr})
 
 	return tbl
 }

@@ -82,90 +82,69 @@ i64;f64;str
 
 func table1() array.Table {
 	f := bytes.NewBufferString(raw1)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-			{Name: "str", Type: arrow.BinaryTypes.String},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+		{Name: "str", Type: arrow.BinaryTypes.String},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func table2() array.Table {
 	f := bytes.NewBufferString(raw2)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-			{Name: "str", Type: arrow.BinaryTypes.String},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+		{Name: "str", Type: arrow.BinaryTypes.String},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func table3() array.Table {
 	f := bytes.NewBufferString(raw3)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "str", Type: arrow.BinaryTypes.String},
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "str", Type: arrow.BinaryTypes.String},
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func table4() array.Table {
 	f := bytes.NewBufferString(raw1)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "str", Type: arrow.BinaryTypes.String},
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "str", Type: arrow.BinaryTypes.String},
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func table5() array.Table {
 	f := bytes.NewBufferString(raw1)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-			{Name: "str", Type: arrow.BinaryTypes.String},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+		{Name: "str", Type: arrow.BinaryTypes.String},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func table6() array.Table {
 	f := bytes.NewBufferString(raw4)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-			{Name: "str", Type: arrow.BinaryTypes.String},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+		{Name: "str", Type: arrow.BinaryTypes.String},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func table7() array.Table {
 	f := bytes.NewBufferString(raw5)
-	schema := arrow.NewSchema(
-		[]arrow.Field{
-			{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
-			{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
-			{Name: "str", Type: arrow.BinaryTypes.String},
-		},
-		nil,
-	)
-	return ReadCSV(f, schema, WithComma(';'), WithComment('#'), WithHeader())
+	fields := []arrow.Field{
+		{Name: "i64", Type: arrow.PrimitiveTypes.Int64},
+		{Name: "f64", Type: arrow.PrimitiveTypes.Float64},
+		{Name: "str", Type: arrow.BinaryTypes.String},
+	}
+	return ReadCSV(f, fields, WithComma(';'), WithComment('#'), WithHeader())
 }
 
 func TestReader1(t *testing.T) {

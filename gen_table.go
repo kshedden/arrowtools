@@ -65,3 +65,13 @@ func GetFloat32SliceFromRecord(rec array.Record, pos int) []float32 {
 func GetFloat64SliceFromRecord(rec array.Record, pos int) []float64 {
 	return array.NewFloat64Data(rec.Column(pos).Data()).Float64Values()
 }
+
+func GetStringSliceFromRecord(rec array.Record, pos int) []string {
+	// TODO probably not the best way to do this.
+	da := array.NewStringData(rec.Column(pos).Data())
+	vals := make([]string, da.Len())
+	for i := 0; i < da.Len(); i++ {
+		vals[i] = da.Value(i)
+	}
+	return vals
+}

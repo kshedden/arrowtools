@@ -57,11 +57,8 @@ func TestCSV1(t *testing.T) {
 		{Name: "xfloat64", Type: arrow.PrimitiveTypes.Float64},
 	}
 
-	schema := arrow.NewSchema(fields, nil)
-
-	tbl1 := ReadCSV(&buf, schema, WithHeader())
-
-	tbl2 := array.NewTable(schema, cols, -1)
+	tbl1 := ReadCSV(&buf, fields, WithHeader())
+	tbl2 := array.NewTable(arrow.NewSchema(fields, nil), cols, -1)
 
 	if b, msg := TablesEqual(tbl1, tbl2); !b {
 		println(msg)

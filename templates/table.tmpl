@@ -11,3 +11,13 @@ import (
         return array.New{{ .Utype }}Data(rec.Column(pos).Data()).{{ .Utype }}Values()
     }
 {{ end }}
+
+func GetStringSliceFromRecord(rec array.Record, pos int) []string {
+	// TODO probably not the best way to do this.
+	da := array.NewStringData(rec.Column(pos).Data())
+	vals := make([]string, da.Len())
+    for i := 0; i<da.Len(); i++ {
+    	vals[i] = da.Value(i)
+    }
+    return vals
+}
