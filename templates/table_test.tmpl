@@ -23,11 +23,13 @@ func TestGetSliceFromRecord(t *testing.T) {
     for tr.Next() {
 
 		rec := tr.Record()
+        rh := NewRecordHelper(rec)
 		j := 0
 
 	    {{- range . }}
 	        {
-	        	x := Get{{ .Utype }}SliceFromRecord(rec, j)
+	            rh.SetPos(j)
+	        	x := rh.{{ .Utype }}Slice()
                 for i := range x {
                     if x[i] != {{ .Type }}(v + i) {
                     	t.Fail()

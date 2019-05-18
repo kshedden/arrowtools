@@ -37,7 +37,7 @@ func ReplaceColumn(tbl array.Table, col array.Column) array.Table {
 // AppendColumns returns a table that contains the columns of the provided table, and appends
 // the given additional columns.  These new columns must not have the same name as any
 // existing columns.
-func AppendColumns(tbl array.Table, cols []array.Column) array.Table {
+func AppendColumns(tbl array.Table, cols ...array.Column) array.Table {
 
 	schema := tbl.Schema()
 	flds := schema.Fields()

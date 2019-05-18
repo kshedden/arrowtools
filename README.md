@@ -4,4 +4,4 @@
 [![GoDoc](https://godoc.org/github.com/kshedden/arrowtools?status.png)](https://godoc.org/github.com/kshedden/arrowtools)
 
 __arrowtools__ is a Go package for manipulating [Apache arrow](https://github.com/apache/arrow) data containers.
-See also [here](https://blog.gopheracademy.com/advent-2018/go-arrow/).
+For more about support for Arrow in Go see [here](https://blog.gopheracademy.com/advent-2018/go-arrow/).

@@ -68,9 +68,11 @@ func TestGetSliceFromRecord(t *testing.T) {
 	for tr.Next() {
 
 		rec := tr.Record()
+		rh := NewRecordHelper(rec)
 		j := 0
 		{
-			x := GetUint8SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Uint8Slice()
 			for i := range x {
 				if x[i] != uint8(v+i) {
 					t.Fail()
@@ -79,7 +81,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetUint16SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Uint16Slice()
 			for i := range x {
 				if x[i] != uint16(v+i) {
 					t.Fail()
@@ -88,7 +91,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetUint32SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Uint32Slice()
 			for i := range x {
 				if x[i] != uint32(v+i) {
 					t.Fail()
@@ -97,7 +101,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetUint64SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Uint64Slice()
 			for i := range x {
 				if x[i] != uint64(v+i) {
 					t.Fail()
@@ -106,7 +111,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetInt8SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Int8Slice()
 			for i := range x {
 				if x[i] != int8(v+i) {
 					t.Fail()
@@ -115,7 +121,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetInt16SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Int16Slice()
 			for i := range x {
 				if x[i] != int16(v+i) {
 					t.Fail()
@@ -124,7 +131,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetInt32SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Int32Slice()
 			for i := range x {
 				if x[i] != int32(v+i) {
 					t.Fail()
@@ -133,7 +141,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetInt64SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Int64Slice()
 			for i := range x {
 				if x[i] != int64(v+i) {
 					t.Fail()
@@ -142,7 +151,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetFloat32SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Float32Slice()
 			for i := range x {
 				if x[i] != float32(v+i) {
 					t.Fail()
@@ -151,7 +161,8 @@ func TestGetSliceFromRecord(t *testing.T) {
 			j++
 		}
 		{
-			x := GetFloat64SliceFromRecord(rec, j)
+			rh.SetPos(j)
+			x := rh.Float64Slice()
 			for i := range x {
 				if x[i] != float64(v+i) {
 					t.Fail()

@@ -25,7 +25,7 @@ func TestAppendColumns1(t *testing.T) {
 	col2 := ColumnFromFloat32Slices(y, nil, "y")
 
 	tbl1 := TableFromColumns([]array.Column{*col1})
-	tbl2 := AppendColumns(tbl1, []array.Column{*col2})
+	tbl2 := AppendColumns(tbl1, *col2)
 	tbl3 := TableFromColumns([]array.Column{*col1, *col2})
 
 	b, msg := TablesEqual(tbl2, tbl3)

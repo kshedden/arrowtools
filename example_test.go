@@ -55,9 +55,12 @@ i64;f64;str
 	tr := array.NewTableReader(tbl, 1000)
 	for tr.Next() {
 		rec := tr.Record()
-		col1 := GetStringSliceFromRecord(rec, 0)
+		rh := NewRecordHelper(rec)
+		rh.SetPos(0)
+		col1 := rh.StringSlice()
 		fmt.Printf("%v\n", col1)
-		col2 := GetInt64SliceFromRecord(rec, 1)
+		rh.SetName("i64")
+		col2 := rh.Int64Slice()
 		fmt.Printf("%v\n", col2)
 	}
 
@@ -88,11 +91,15 @@ func ExampleCSVWithoutHeader() {
 	tr := array.NewTableReader(tbl, 1000)
 	for tr.Next() {
 		rec := tr.Record()
-		col1 := GetInt64SliceFromRecord(rec, 0)
+		rh := NewRecordHelper(rec)
+		rh.SetPos(0)
+		col1 := rh.Int64Slice()
 		fmt.Printf("%v\n", col1)
-		col2 := GetFloat32SliceFromRecord(rec, 1)
+		rh.SetPos(1)
+		col2 := rh.Float32Slice()
 		fmt.Printf("%v\n", col2)
-		col3 := GetStringSliceFromRecord(rec, 2)
+		rh.SetName("str")
+		col3 := rh.StringSlice()
 		fmt.Printf("%v\n", col3)
 	}
 
