@@ -1,0 +1,23 @@
+package arrowtools
+
+import (
+	"github.com/apache/arrow/go/arrow/array"
+)
+
+{{ range . }}
+    // Get{{ .Utype }}SliceFromRecord returns a slice corresponding to the given
+    // column position in the given record.
+    func (rh *RecordHelper) {{ .Utype }}Slice() []{{ .Type }} {
+        return array.New{{ .Utype }}Data(rh.rec.Column(rh.curpos).Data()).{{ .Utype }}Values()
+    }
+{{ end }}
+
+func (rh *RecordHelper) StringSlice() []string {
+	// TODO probably not the best way to do this.
+	da := array.NewStringData(rh.rec.Column(rh.curpos).Data())
+	vals := make([]string, da.Len())
+    for i := 0; i<da.Len(); i++ {
+    	vals[i] = da.Value(i)
+    }
+    return vals
+}
