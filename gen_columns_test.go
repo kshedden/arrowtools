@@ -14,7 +14,8 @@ func TestColumnSliceUint8(t *testing.T) {
 		[]uint8{8, 9},
 	}
 
-	col := ColumnFromUint8Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Uint8Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Uint8Slices()
@@ -40,7 +41,8 @@ func TestColumnSliceUint16(t *testing.T) {
 		[]uint16{8, 9},
 	}
 
-	col := ColumnFromUint16Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Uint16Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Uint16Slices()
@@ -66,7 +68,8 @@ func TestColumnSliceUint32(t *testing.T) {
 		[]uint32{8, 9},
 	}
 
-	col := ColumnFromUint32Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Uint32Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Uint32Slices()
@@ -92,7 +95,8 @@ func TestColumnSliceUint64(t *testing.T) {
 		[]uint64{8, 9},
 	}
 
-	col := ColumnFromUint64Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Uint64Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Uint64Slices()
@@ -118,7 +122,8 @@ func TestColumnSliceInt8(t *testing.T) {
 		[]int8{8, 9},
 	}
 
-	col := ColumnFromInt8Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Int8Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Int8Slices()
@@ -144,7 +149,8 @@ func TestColumnSliceInt16(t *testing.T) {
 		[]int16{8, 9},
 	}
 
-	col := ColumnFromInt16Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Int16Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Int16Slices()
@@ -170,7 +176,8 @@ func TestColumnSliceInt32(t *testing.T) {
 		[]int32{8, 9},
 	}
 
-	col := ColumnFromInt32Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Int32Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Int32Slices()
@@ -196,7 +203,8 @@ func TestColumnSliceInt64(t *testing.T) {
 		[]int64{8, 9},
 	}
 
-	col := ColumnFromInt64Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Int64Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Int64Slices()
@@ -222,7 +230,8 @@ func TestColumnSliceFloat32(t *testing.T) {
 		[]float32{8, 9},
 	}
 
-	col := ColumnFromFloat32Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Float32Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Float32Slices()
@@ -248,7 +257,8 @@ func TestColumnSliceFloat64(t *testing.T) {
 		[]float64{8, 9},
 	}
 
-	col := ColumnFromFloat64Slices(x, nil, "name")
+	var sh SliceHelper
+	col := sh.Float64Column(x, nil, "name")
 
 	ch := NewColumnHelper(col)
 	y := ch.Float64Slices()

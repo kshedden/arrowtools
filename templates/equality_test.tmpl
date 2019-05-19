@@ -41,15 +41,17 @@ import (
             {7, 8},
         }
 
+		var sh SliceHelper
+
         {{ if eq .Utype "float32" }}
-            col1 := ColumnFromFloat64Slices(v, nil, "name")
+            col1 := sh.Float64Column(v, nil, "name")
 		{{- else }}
-            col1 := ColumnFromFloat32Slices(v, nil, "name")
+            col1 := sh.Float32Column(v, nil, "name")
         {{- end }}
-        col2 := ColumnFrom{{ .Utype }}Slices(w, nil, "name")
-        col3 := ColumnFrom{{ .Utype }}Slices(x, nil, "name")
-        col4 := ColumnFrom{{ .Utype }}Slices(y, nil, "name")
-        col5 := ColumnFrom{{ .Utype }}Slices(z, nil, "name")
+        col2 := sh.{{ .Utype }}Column(w, nil, "name")
+        col3 := sh.{{ .Utype }}Column(x, nil, "name")
+        col4 := sh.{{ .Utype }}Column(y, nil, "name")
+        col5 := sh.{{ .Utype }}Column(z, nil, "name")
 
         if b, _ := ColumnsEqual(col2, col5); !b {
             t.Fail()

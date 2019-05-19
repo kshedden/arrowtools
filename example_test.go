@@ -10,9 +10,11 @@ import (
 
 func ExampleColumnFromUint8Slices() {
 
-	col1 := ColumnFromUint8Slices([][]uint8{{0, 1, 2}, {3, 4}}, nil, "col1")
-	col2 := ColumnFromUint8Slices([][]uint8{{0, 1, 2}, {3, 4}}, nil, "col2")
-	col3 := ColumnFromUint8Slices([][]uint8{{5, 2, 3}, {4, 1}}, nil, "col2")
+	var sh SliceHelper
+
+	col1 := sh.Uint8Column([][]uint8{{0, 1, 2}, {3, 4}}, nil, "col1")
+	col2 := sh.Uint8Column([][]uint8{{0, 1, 2}, {3, 4}}, nil, "col2")
+	col3 := sh.Uint8Column([][]uint8{{5, 2, 3}, {4, 1}}, nil, "col2")
 
 	b1, _ := ColumnsEqual(col1, col2)
 	b2, _ := ColumnsEqual(col1, col3)
@@ -23,9 +25,11 @@ func ExampleColumnFromUint8Slices() {
 
 func ExampleTableFromColumns() {
 
-	col1 := ColumnFromFloat32Slices([][]float32{{4, 1, 3}, {2, 5}}, nil, "col1")
-	col2 := ColumnFromFloat32Slices([][]float32{{0, 1, 2}, {3, 4}}, nil, "col2")
-	col3 := ColumnFromFloat32Slices([][]float32{{5, 2, 3}, {4, 1}}, nil, "col3")
+	var sh SliceHelper
+
+	col1 := sh.Float32Column([][]float32{{4, 1, 3}, {2, 5}}, nil, "col1")
+	col2 := sh.Float32Column([][]float32{{0, 1, 2}, {3, 4}}, nil, "col2")
+	col3 := sh.Float32Column([][]float32{{5, 2, 3}, {4, 1}}, nil, "col3")
 
 	tbl := TableFromColumns([]array.Column{*col1, *col2, *col3})
 	fmt.Printf("%d %d", tbl.NumRows(), tbl.NumCols())
@@ -111,9 +115,11 @@ func ExampleCSVWithoutHeader() {
 
 func ExampleDropNA() {
 
-	col1 := ColumnFromFloat64Slices([][]float64{{0, 1, 2, 3}},
+	var sh SliceHelper
+
+	col1 := sh.Float64Column([][]float64{{0, 1, 2, 3}},
 		[][]bool{{true, true, false, true}}, "x")
-	col2 := ColumnFromInt16Slices([][]int16{{0, 1, 2, 3}},
+	col2 := sh.Int16Column([][]int16{{0, 1, 2, 3}},
 		[][]bool{{false, true, false, true}}, "y")
 
 	tbl1 := TableFromColumns([]array.Column{*col1, *col2})

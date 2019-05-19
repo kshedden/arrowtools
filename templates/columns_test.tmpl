@@ -13,7 +13,8 @@ import (
         	[]{{ .Type }}{8, 9},
         }
 
-	    col := ColumnFrom{{ .Utype }}Slices(x, nil, "name")
+		var sh SliceHelper
+	    col := sh.{{ .Utype }}Column(x, nil, "name")
 
 		ch := NewColumnHelper(col)
 	    y := ch.{{ .Utype }}Slices()

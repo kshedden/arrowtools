@@ -9,7 +9,7 @@ import (
 {{ range . }}
     // ColumnFrom{{ .Utype }}Slices returns a pointer to an array.Column value that
     // holds the given {{ .Type }} data.
-    func ColumnFrom{{ .Utype }}Slices(x [][]{{ .Type }}, valid [][]bool, name string) *array.Column {
+    func (sh *SliceHelper) {{ .Utype }}Column(x [][]{{ .Type }}, valid [][]bool, name string) *array.Column {
 
     	mem := memory.DefaultAllocator
     	var y []array.Interface

@@ -10,7 +10,7 @@ import (
 
 // ColumnFromUint8Slices returns a pointer to an array.Column value that
 // holds the given uint8 data.
-func ColumnFromUint8Slices(x [][]uint8, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Uint8Column(x [][]uint8, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -32,7 +32,7 @@ func ColumnFromUint8Slices(x [][]uint8, valid [][]bool, name string) *array.Colu
 
 // ColumnFromUint16Slices returns a pointer to an array.Column value that
 // holds the given uint16 data.
-func ColumnFromUint16Slices(x [][]uint16, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Uint16Column(x [][]uint16, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -54,7 +54,7 @@ func ColumnFromUint16Slices(x [][]uint16, valid [][]bool, name string) *array.Co
 
 // ColumnFromUint32Slices returns a pointer to an array.Column value that
 // holds the given uint32 data.
-func ColumnFromUint32Slices(x [][]uint32, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Uint32Column(x [][]uint32, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -76,7 +76,7 @@ func ColumnFromUint32Slices(x [][]uint32, valid [][]bool, name string) *array.Co
 
 // ColumnFromUint64Slices returns a pointer to an array.Column value that
 // holds the given uint64 data.
-func ColumnFromUint64Slices(x [][]uint64, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Uint64Column(x [][]uint64, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -98,7 +98,7 @@ func ColumnFromUint64Slices(x [][]uint64, valid [][]bool, name string) *array.Co
 
 // ColumnFromInt8Slices returns a pointer to an array.Column value that
 // holds the given int8 data.
-func ColumnFromInt8Slices(x [][]int8, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Int8Column(x [][]int8, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -120,7 +120,7 @@ func ColumnFromInt8Slices(x [][]int8, valid [][]bool, name string) *array.Column
 
 // ColumnFromInt16Slices returns a pointer to an array.Column value that
 // holds the given int16 data.
-func ColumnFromInt16Slices(x [][]int16, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Int16Column(x [][]int16, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -142,7 +142,7 @@ func ColumnFromInt16Slices(x [][]int16, valid [][]bool, name string) *array.Colu
 
 // ColumnFromInt32Slices returns a pointer to an array.Column value that
 // holds the given int32 data.
-func ColumnFromInt32Slices(x [][]int32, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Int32Column(x [][]int32, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -164,7 +164,7 @@ func ColumnFromInt32Slices(x [][]int32, valid [][]bool, name string) *array.Colu
 
 // ColumnFromInt64Slices returns a pointer to an array.Column value that
 // holds the given int64 data.
-func ColumnFromInt64Slices(x [][]int64, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Int64Column(x [][]int64, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -186,7 +186,7 @@ func ColumnFromInt64Slices(x [][]int64, valid [][]bool, name string) *array.Colu
 
 // ColumnFromFloat32Slices returns a pointer to an array.Column value that
 // holds the given float32 data.
-func ColumnFromFloat32Slices(x [][]float32, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Float32Column(x [][]float32, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface
@@ -208,7 +208,7 @@ func ColumnFromFloat32Slices(x [][]float32, valid [][]bool, name string) *array.
 
 // ColumnFromFloat64Slices returns a pointer to an array.Column value that
 // holds the given float64 data.
-func ColumnFromFloat64Slices(x [][]float64, valid [][]bool, name string) *array.Column {
+func (sh *SliceHelper) Float64Column(x [][]float64, valid [][]bool, name string) *array.Column {
 
 	mem := memory.DefaultAllocator
 	var y []array.Interface

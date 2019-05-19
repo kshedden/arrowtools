@@ -9,55 +9,57 @@ import (
 
 func TestGetSliceFromRecord(t *testing.T) {
 
+	var sh SliceHelper
+
 	var cols []array.Column
 	{
 		x := [][]uint8{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint8Slices(x, nil, "Uint8")
+		col := sh.Uint8Column(x, nil, "Uint8")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]uint16{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint16Slices(x, nil, "Uint16")
+		col := sh.Uint16Column(x, nil, "Uint16")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]uint32{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint32Slices(x, nil, "Uint32")
+		col := sh.Uint32Column(x, nil, "Uint32")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]uint64{{3, 4, 5}, {6, 7}}
-		col := ColumnFromUint64Slices(x, nil, "Uint64")
+		col := sh.Uint64Column(x, nil, "Uint64")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int8{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt8Slices(x, nil, "Int8")
+		col := sh.Int8Column(x, nil, "Int8")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int16{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt16Slices(x, nil, "Int16")
+		col := sh.Int16Column(x, nil, "Int16")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int32{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt32Slices(x, nil, "Int32")
+		col := sh.Int32Column(x, nil, "Int32")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]int64{{3, 4, 5}, {6, 7}}
-		col := ColumnFromInt64Slices(x, nil, "Int64")
+		col := sh.Int64Column(x, nil, "Int64")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]float32{{3, 4, 5}, {6, 7}}
-		col := ColumnFromFloat32Slices(x, nil, "Float32")
+		col := sh.Float32Column(x, nil, "Float32")
 		cols = append(cols, *col)
 	}
 	{
 		x := [][]float64{{3, 4, 5}, {6, 7}}
-		col := ColumnFromFloat64Slices(x, nil, "Float64")
+		col := sh.Float64Column(x, nil, "Float64")
 		cols = append(cols, *col)
 	}
 
