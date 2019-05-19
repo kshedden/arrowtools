@@ -15,7 +15,9 @@ func TestColumnSliceUint8(t *testing.T) {
 	}
 
 	col := ColumnFromUint8Slices(x, nil, "name")
-	y := SlicesFromUint8Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Uint8Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -39,7 +41,9 @@ func TestColumnSliceUint16(t *testing.T) {
 	}
 
 	col := ColumnFromUint16Slices(x, nil, "name")
-	y := SlicesFromUint16Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Uint16Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -63,7 +67,9 @@ func TestColumnSliceUint32(t *testing.T) {
 	}
 
 	col := ColumnFromUint32Slices(x, nil, "name")
-	y := SlicesFromUint32Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Uint32Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -87,7 +93,9 @@ func TestColumnSliceUint64(t *testing.T) {
 	}
 
 	col := ColumnFromUint64Slices(x, nil, "name")
-	y := SlicesFromUint64Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Uint64Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -111,7 +119,9 @@ func TestColumnSliceInt8(t *testing.T) {
 	}
 
 	col := ColumnFromInt8Slices(x, nil, "name")
-	y := SlicesFromInt8Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Int8Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -135,7 +145,9 @@ func TestColumnSliceInt16(t *testing.T) {
 	}
 
 	col := ColumnFromInt16Slices(x, nil, "name")
-	y := SlicesFromInt16Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Int16Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -159,7 +171,9 @@ func TestColumnSliceInt32(t *testing.T) {
 	}
 
 	col := ColumnFromInt32Slices(x, nil, "name")
-	y := SlicesFromInt32Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Int32Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -183,7 +197,9 @@ func TestColumnSliceInt64(t *testing.T) {
 	}
 
 	col := ColumnFromInt64Slices(x, nil, "name")
-	y := SlicesFromInt64Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Int64Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -207,7 +223,9 @@ func TestColumnSliceFloat32(t *testing.T) {
 	}
 
 	col := ColumnFromFloat32Slices(x, nil, "name")
-	y := SlicesFromFloat32Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Float32Slices()
 
 	if len(x) != len(y) {
 		t.Fail()
@@ -231,7 +249,9 @@ func TestColumnSliceFloat64(t *testing.T) {
 	}
 
 	col := ColumnFromFloat64Slices(x, nil, "name")
-	y := SlicesFromFloat64Column(col)
+
+	ch := NewColumnHelper(col)
+	y := ch.Float64Slices()
 
 	if len(x) != len(y) {
 		t.Fail()

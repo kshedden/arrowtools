@@ -7,6 +7,18 @@ import (
 	"github.com/apache/arrow/go/arrow/array"
 )
 
+type ColumnHelper struct {
+	col *array.Column
+}
+
+// NewColumnHelper creates a ColumnHelper for the given column.  It can
+// be used to extract data from the column as raw slices.
+func NewColumnHelper(col *array.Column) *ColumnHelper {
+	return &ColumnHelper{
+		col: col,
+	}
+}
+
 // ReplaceColumn returns a new table in which one column is replaced with a
 // given column.  The name of the given column must match the name of one
 // column in the provided table.

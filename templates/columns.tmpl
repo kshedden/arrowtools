@@ -31,16 +31,13 @@ import (
 {{ end }}
 
 {{ range . }}
-    // SlicesFrom{{ .Utype }}Column returns a slice of slices holding the
+    // {{ .Utype }}Column returns a slice of slices holding the
     // data from the given column.
-    func SlicesFrom{{ .Utype }}Column(col *array.Column) [][]{{ .Type }} {
-
+    func (ch *ColumnHelper) {{ .Utype }}Slices() [][]{{ .Type }} {
     	var x [][]{{ .Type }}
-
-    	for _, c := range col.Data().Chunks() {
+    	for _, c := range ch.col.Data().Chunks() {
     		x = append(x, array.New{{ .Utype }}Data(c.Data()).{{ .Utype }}Values())
     	}
-
     	return x
     }
 {{ end }}

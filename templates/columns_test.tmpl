@@ -14,7 +14,9 @@ import (
         }
 
 	    col := ColumnFrom{{ .Utype }}Slices(x, nil, "name")
-	    y := SlicesFrom{{ .Utype }}Column(col)
+
+		ch := NewColumnHelper(col)
+	    y := ch.{{ .Utype }}Slices()
 
 		if len(x) != len(y) {
 			t.Fail()

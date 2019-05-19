@@ -228,132 +228,102 @@ func ColumnFromFloat64Slices(x [][]float64, valid [][]bool, name string) *array.
 	return array.NewColumn(fld, chunks)
 }
 
-// SlicesFromUint8Column returns a slice of slices holding the
+// Uint8Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromUint8Column(col *array.Column) [][]uint8 {
-
+func (ch *ColumnHelper) Uint8Slices() [][]uint8 {
 	var x [][]uint8
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewUint8Data(c.Data()).Uint8Values())
 	}
-
 	return x
 }
 
-// SlicesFromUint16Column returns a slice of slices holding the
+// Uint16Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromUint16Column(col *array.Column) [][]uint16 {
-
+func (ch *ColumnHelper) Uint16Slices() [][]uint16 {
 	var x [][]uint16
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewUint16Data(c.Data()).Uint16Values())
 	}
-
 	return x
 }
 
-// SlicesFromUint32Column returns a slice of slices holding the
+// Uint32Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromUint32Column(col *array.Column) [][]uint32 {
-
+func (ch *ColumnHelper) Uint32Slices() [][]uint32 {
 	var x [][]uint32
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewUint32Data(c.Data()).Uint32Values())
 	}
-
 	return x
 }
 
-// SlicesFromUint64Column returns a slice of slices holding the
+// Uint64Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromUint64Column(col *array.Column) [][]uint64 {
-
+func (ch *ColumnHelper) Uint64Slices() [][]uint64 {
 	var x [][]uint64
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewUint64Data(c.Data()).Uint64Values())
 	}
-
 	return x
 }
 
-// SlicesFromInt8Column returns a slice of slices holding the
+// Int8Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromInt8Column(col *array.Column) [][]int8 {
-
+func (ch *ColumnHelper) Int8Slices() [][]int8 {
 	var x [][]int8
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewInt8Data(c.Data()).Int8Values())
 	}
-
 	return x
 }
 
-// SlicesFromInt16Column returns a slice of slices holding the
+// Int16Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromInt16Column(col *array.Column) [][]int16 {
-
+func (ch *ColumnHelper) Int16Slices() [][]int16 {
 	var x [][]int16
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewInt16Data(c.Data()).Int16Values())
 	}
-
 	return x
 }
 
-// SlicesFromInt32Column returns a slice of slices holding the
+// Int32Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromInt32Column(col *array.Column) [][]int32 {
-
+func (ch *ColumnHelper) Int32Slices() [][]int32 {
 	var x [][]int32
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewInt32Data(c.Data()).Int32Values())
 	}
-
 	return x
 }
 
-// SlicesFromInt64Column returns a slice of slices holding the
+// Int64Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromInt64Column(col *array.Column) [][]int64 {
-
+func (ch *ColumnHelper) Int64Slices() [][]int64 {
 	var x [][]int64
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewInt64Data(c.Data()).Int64Values())
 	}
-
 	return x
 }
 
-// SlicesFromFloat32Column returns a slice of slices holding the
+// Float32Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromFloat32Column(col *array.Column) [][]float32 {
-
+func (ch *ColumnHelper) Float32Slices() [][]float32 {
 	var x [][]float32
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewFloat32Data(c.Data()).Float32Values())
 	}
-
 	return x
 }
 
-// SlicesFromFloat64Column returns a slice of slices holding the
+// Float64Column returns a slice of slices holding the
 // data from the given column.
-func SlicesFromFloat64Column(col *array.Column) [][]float64 {
-
+func (ch *ColumnHelper) Float64Slices() [][]float64 {
 	var x [][]float64
-
-	for _, c := range col.Data().Chunks() {
+	for _, c := range ch.col.Data().Chunks() {
 		x = append(x, array.NewFloat64Data(c.Data()).Float64Values())
 	}
-
 	return x
 }
